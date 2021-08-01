@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./../css/default.css"/>
+        <h:outputStylesheet name="./../css/cssLayout.css"/>
+        <link rel="stylesheet" href="style2.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <title>Pitasoft</title>
+    </h:head>
+
+    <h:body>
+
+        <style>
+
+            @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+            body {
+                font-family: 'Poppins', sans-serif;
+                background: #fafafa;
+            }
+
+            p {
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.1em;
+                font-weight: 300;
+                line-height: 1.7em;
+                color: #999;
+            }
+
+            a,
+            a:hover,
+            a:focus {
+                color: inherit;
+                text-decoration: none;
+                transition: all 0.3s;
+            }
+
+            .navbar {
+                padding: 15px 10px;
+                background: #fff;
+                border: none;
+                border-radius: 0;
+                margin-bottom: 40px;
+                box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar-btn {
+                box-shadow: none;
+                outline: none !important;
+                border: none;
+            }
+
+            .line {
+                width: 100%;
+                height: 1px;
+                border-bottom: 1px dashed #ddd;
+                margin: 40px 0;
+            }
+
+            .btn-info{
+                background-color: #31b0d5;
+                border-color: #269abc;
+            }
+
+            /* ---------------------------------------------------
+                SIDEBAR STYLE
+            ----------------------------------------------------- */
+
+            .wrapper {
+                display: flex;
+                width: 100%;
+            }
+
+            #sidebar {
+                width: 250px;
+                position: fixed;
+                top: 7%;
+                left: 0;
+                height: 100vh;
+                z-index: 999;
+                background: #2980B9;
+                color: #fff;
+                transition: all 0.3s;
+            }
+
+            #sidebar.active {
+                margin-left: -250px;
+            }
+
+            #sidebar .sidebar-header {
+                padding: 20px;
+                background: #2471A3;
+                background-image: repeating-radial-gradient( #3498DB, #2980B9, #2471A3, #1A5276);
+            }
+
+            #sidebar ul.components {
+                padding: 20px 0;
+            }
+
+            #sidebar ul p {
+                color: #fff;
+                padding: 10px;
+            }
+
+            #sidebar ul li a {
+                padding: 10px;
+                font-size: 1.1em;
+                display: block;
+            }
+
+            #sidebar ul li a:hover {
+                color: #2980B9;
+                background: #fff;
+            }
+
+            #sidebar ul li.active>a,
+            a[aria-expanded="true"] {
+                color: #fff;
+                background: #2471A3;
+            }
+
+            a[data-toggle="collapse"] {
+                position: relative;
+            }
+
+            .dropdown-toggle::after {
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: 20px;
+                transform: translateY(-50%);
+                content: "+";
+            }
+
+            ul ul a {
+                font-size: 0.9em !important;
+                padding-left: 30px !important;
+                background: #2471A3;
+            }
+
+            ul.CTAs {
+                padding: 20px;
+            }
+
+            ul.CTAs a {
+                text-align: center;
+                font-size: 0.9em !important;
+                display: block;
+                border-radius: 5px;
+                margin-bottom: 5px;
+            }
+
+            a.download {
+                background: #fff;
+                color: #2471A3;
+            }
+
+            a.article,
+            a.article:hover {
+                background: #2471A3 !important;
+                color: #fff !important;
+            }
+
+            /* ---------------------------------------------------
+                CONTENT STYLE
+            ----------------------------------------------------- */
+
+            #content {
+                width: calc(100% - 250px);
+                padding: 40px;
+                transition: all 0.3s;
+                position: absolute;
+                top: 7%;
+                right: 0;
+                padding-top: 2%;
+            }
+
+            #content.active {
+                width: 100%;
+
+            }
+
+            /* ---------------------------------------------------
+                MEDIAQUERIES
+            ----------------------------------------------------- */
+
+            @media (max-width: 768px) {
+                #sidebar {
+                    margin-left: -250px;
+                }
+                #sidebar.active {
+                    margin-left: 0;
+                }
+                #content {
+                    width: 100%;
+                }
+                #content.active {
+                    width: calc(100% - 250px);
+                }
+                #sidebarCollapse span {
+                    display: none;
+                }
+            }
+        </style>
+
+        <div id="left">
+            <ui:insert name="left">
+
+                <div class="wrapper">
+                    <!-- Sidebar -->
+                    <nav id="sidebar">
+                        <div class="sidebar-header">
+                            <b:image  library="img" name="Logo500.png" height="100px"/>
+                            <h3 align="center">PITAFISC</h3>
+                        </div>
+                        <ul class="list-unstyled components">
+                            <h3 style="padding-left: 2%">Menu</h3>
+                            <br/>
+                            <li>
+                                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mantenimiento</a>
+                                <ul class="collapse list-unstyled" id="homeSubmenu">
+                                    <li>
+                                        <a href="#{request.contextPath}/faces/Sistema/Clientes.xhtml">Clientes</a>
+                                    </li>
+                                    <li>
+                                        <a href="#{request.contextPath}/faces/Sistema/Inventario.xhtml">Inventario</a>
+                                    </li>
+                                    <li>
+                                        <a href="#{request.contextPath}/faces/Sistema/Servicios.xhtml">Servicios</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/faces/Sistema/Facturacion.xhtml">Facturacion</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/faces/Sistema/Reportes.xhtml">Reportes</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/faces/Sistema/Tiquetes.xhtml">Tiquetes</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/faces/Sistema/Configuracion.xhtml">Configuracion</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/faces/Sistema/login.xhtml">Salir</a>
+                            </li>
+                        </ul>
+
+                    </nav>
+                    <!-- Page Content -->
+
+                    <div id="content">
+
+                        <b:navBar inverse="false" fluid="true" class="navbar-fixed-top" style=" height: 66px; background-image: repeating-radial-gradient(#2980B9, #2471A3, #1A5276)">
+
+                            <b:navbarLinks pull="left">
+                                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                                    <i class="fa fa-bars"></i>
+                                </button> 
+                            </b:navbarLinks>
+
+                            <b:navbarLinks pull="right" >
+                                <b:column>
+                                    <p align="right" style="height: 12px; color: white">Su cedula es: ${loginController.cedula}</p>
+                                    <p align="right" style="height: 2px; color: white">Su perfil es: ${loginController.rol}</p>
+                                </b:column>
+                            </b:navbarLinks>
+
+
+                        </b:navBar> 
+
+                        <ui:insert name="content">
+
+
+                            Content
+
+
+                        </ui:insert>
+                    </div>
+                </div>
+
+            </ui:insert>
+        </div>
+
+
+        <!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+        </script>    
+
+    </h:body>
+
+</html>

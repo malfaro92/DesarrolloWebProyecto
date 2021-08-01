@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+    <h:head>
+        <title>Login</title>
+        <style>
+            body {
+                font-family: 'Poppins', sans-serif;
+                background: #fafafa;
+            }
+            
+            .centrado{ 
+                position:absolute;
+                top:43%;
+                left: 75%;
+                bottom:0;
+                width: 400px;
+                height: 400px;
+                margin: auto;
+                margin-left: -200px;
+                margin-top: -150px;
+            }  
+
+            #btn {
+                position: absolute;
+                left: 1%;
+                background-color: #F8F9F9; /* Blue background */
+                border: none; /* Remove borders */
+                color: #3498DB; /* White text */
+                padding: 5px 12px;
+                font-size: 40px; /* Set a font size */
+                cursor: pointer; /* Mouse pointer on hover */
+                border-radius: 50%;
+            }
+
+            /* Darker background on mouse-over */
+            #btn:hover {
+                background-color: #3498DB;
+                color: #F8F9F9;
+            }
+
+
+        </style>
+    </h:head>
+    <h:body>
+        <b:image  library="img" name="LoginFondo1.jpg"  height="100%" style="width: 100%; position:absolute; top: 0%"/>
+        
+        <button id="btn" title="Regresar a la pagina de Inicio"><a href="#{request.contextPath}/faces/index.xhtml"><i class="fa fa-home"></i></a></button>
+
+        <h:form id="loginForm">
+
+            <b:panel title="login" look="primary" collapsed="false" style-class="centrado">
+                <b:image  library="img" name="Logo500.png" height="170px"/>
+                <b:row>.</b:row>
+                <b:row tooltip="El usuario ya debe estar registrado">
+                    <b:column medium-screen="1"/>
+                    <b:column medium-screen="10">
+                        <b:inputText placeholder="Cedula"
+                                     id="cedula"
+                                     required="true"
+                                     autocomplete="true"
+                                     value="#{loginController.cedula}">
+                            <f:facet name="prepend">
+                                <b:icon name="user"/>
+                            </f:facet>
+                        </b:inputText>
+                    </b:column>
+                    <b:column medium-screen="10" style-class="message">
+                        <b:message for="cedula"/>
+                    </b:column>
+                </b:row>
+
+                <b:row tooltip="La clave no se ve">
+                    <b:column medium-screen="1"/>
+                    <b:column medium-screen="10">
+                        <b:inputSecret placeholder="Clave"
+                                       id="clave"
+                                       required="true"
+                                       autocomplete="true"
+                                       value="#{loginController.password}">
+                            <f:facet name="prepend">
+                                <b:iconAwesome name="key"/>
+                            </f:facet>
+                        </b:inputSecret>
+                    </b:column>
+                    <b:column medium-screen="10" style-class="message">
+                        <b:message for="clave"/>
+                    </b:column>
+                </b:row>
+
+                <b:row tooltip="De click en login">
+                    <b:column medium-screen="1"/>
+                    <b:column medium-screen="10">
+                        <b:commandButton value="Login"
+                                         look="primary"
+                                         style="width: 100%"
+                                         action="#{loginController.valida()}"/>                      
+                    </b:column>
+                </b:row>
+            </b:panel>
+        </h:form>
+    </h:body>
+
+</html>
+
